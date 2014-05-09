@@ -339,6 +339,12 @@ module.exports = function (grunt) {
                 //autoWatch: true
                 singleRun: true
             }
+        },
+        protractor: {
+            e2e: {
+                configFile: 'e2e.conf.js',
+                keepAlive: true
+            }
         }
     });
 
@@ -364,11 +370,12 @@ module.exports = function (grunt) {
     });
 
     grunt.registerTask('test', [
-        'clean:server',
-        'concurrent:test',
-        'autoprefixer',
-        'connect:test',
-        'karma'
+        //'clean:server',
+        //'concurrent:test',
+        //'autoprefixer',
+        //'connect:test',
+        'karma',
+        'protractor'
     ]);
 
     grunt.registerTask('build', [
