@@ -22,5 +22,9 @@ define([
         it('should create "phones" model with 3 phones', function() {
             expect($scope.phones.length).to.equal(3);
         });
+
+        it('should set the default value of orderProp model', function() {
+            expect($scope.orderProp).to.equal('age');
+        });
     });
 });

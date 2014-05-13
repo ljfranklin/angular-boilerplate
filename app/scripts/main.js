@@ -1,17 +1,8 @@
 /*global require*/
 'use strict';
 
-require.config({
-    paths: {
-        angular: '../bower_components/angular/angular'
-    },
-    shim: {
-        angular: {
-            exports: 'angular'
-        }
-    }
-});
-
-require(['angular', 'app', 'controllers/todo'], function (angular) {
-    angular.bootstrap(document, ['todo']);
+require(['requirejs-config'], function() {
+    require(['angular', 'app', 'controllers/todo'], function (angular) {
+        angular.bootstrap(document, ['todo']);
+    });
 });
