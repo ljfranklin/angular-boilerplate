@@ -4,7 +4,7 @@ define([
     'chai',
     'mocks',
     'app',
-    'controllers/todo'
+    'controllers/phone-list-controller'
 ], function (chai) {
     var expect = chai.expect;
 
@@ -12,7 +12,7 @@ define([
 
         var scope, ctrl, $httpBackend;
 
-        beforeEach(module('todo'));
+        beforeEach(module('phonecatApp'));
 
         beforeEach(inject(function(_$httpBackend_, $rootScope, $controller) {
             $httpBackend = _$httpBackend_;
