@@ -4,9 +4,10 @@
 define([
     'angular',
     'angular-route',
-    'controllers/controllers'
+    'controllers/controllers',
+    'filters/filters'
 ], function (angular) {
-    var app = angular.module('phonecatApp', ['ngRoute', 'phonecatControllers']);
+    var app = angular.module('phonecatApp', ['ngRoute','phonecatControllers','phonecatFilters']);
 
     app.config(['$routeProvider',
         function($routeProvider) {
