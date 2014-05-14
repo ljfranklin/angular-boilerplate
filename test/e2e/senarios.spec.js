@@ -64,9 +64,8 @@ describe('PhoneCat App', function() {
             var query = element(by.model('query'));
             query.sendKeys('nexus');
             element(by.css('.phones li a')).click();
-            browser.getLocationAbsUrl().then(function(url) {
-                expect(url.split('#')[1]).to.equal('/phones/nexus-s');
-            });
+
+            expect(browser.getCurrentUrlHash()).to.eventually.equal('/phones/nexus-s');
         });
     });
 
