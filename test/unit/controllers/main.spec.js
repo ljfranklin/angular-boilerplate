@@ -4,7 +4,7 @@ define([
     'chai',
     'mocks',
     'app',
-    'controllers/phone-list-controller'
+    'controllers/controllers'
 ], function (chai) {
     var expect = chai.expect;
 

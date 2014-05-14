@@ -2,7 +2,7 @@
 'use strict';
 
 require(['requirejs-config'], function() {
-    require(['angular', 'app', 'controllers/phone-list-controller'], function (angular) {
+    require(['angular', 'app'], function (angular) {
         angular.bootstrap(document, ['phonecatApp']);
     });
 });

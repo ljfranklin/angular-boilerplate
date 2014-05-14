@@ -11,9 +11,7 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
-        {pattern: 'app/bower_components/angular/angular.js', included: false},
-        {pattern: 'app/bower_components/angular-mocks/angular-mocks.js', included: false},
-        {pattern: 'bower_components/**/*.js', included: false},
+        {pattern: 'app/bower_components/**/*.js', included: false},
         {pattern: 'app/scripts/*.js', included: false},
         {pattern: 'app/scripts/**/*.js', included: false},
         {pattern: 'test/unit/**/*.js', included: false},

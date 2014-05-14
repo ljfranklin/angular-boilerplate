@@ -1,5 +1,7 @@
 'use strict';
 
+var Q = require('q');
+
 var chai = require('chai');
 var chaiAsPromised = require('chai-as-promised');
 chai.use(chaiAsPromised);
@@ -11,6 +13,12 @@ describe('PhoneCat App', function() {
 
         beforeEach(function() {
             browser.get('');
+        });
+
+        it('should redirect index.html to index.html#/phones', function() {
+            browser.get('');
+            var urlPromise = browser.getCurrentUrl();
+            expect(getUrlHash(urlPromise)).to.eventually.equal('/phones');
         });
 
         it('should filter the phone list as user types into the search box', function() {
@@ -58,4 +66,15 @@ describe('PhoneCat App', function() {
             });
         });
     });
+
+    function getUrlHash(urlPromise) {
+        var deferred = Q.defer();
+
+        urlPromise.then(function(url) {
+            var hash = url.substring(url.indexOf('#') + 1);
+            deferred.resolve(hash);
+        });
+
+        return deferred.promise;
+    }
 });
