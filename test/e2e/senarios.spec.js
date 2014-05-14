@@ -9,6 +9,10 @@ var expect=chai.expect;
 
 describe('PhoneCat App', function() {
 
+    before(function() {
+        browser.getCurrentUrlHash = getCurrentUrlHash.bind(browser);
+    });
+
     describe('Phone list view', function() {
 
         beforeEach(function() {
@@ -17,8 +21,7 @@ describe('PhoneCat App', function() {
 
         it('should redirect index.html to index.html#/phones', function() {
             browser.get('');
-            var urlPromise = browser.getCurrentUrl();
-            expect(getUrlHash(urlPromise)).to.eventually.equal('/phones');
+            expect(browser.getCurrentUrlHash()).to.eventually.equal('/phones');
         });
 
         it('should filter the phone list as user types into the search box', function() {
@@ -67,8 +70,21 @@ describe('PhoneCat App', function() {
         });
     });
 
-    function getUrlHash(urlPromise) {
+    describe('Phone detail view', function() {
+
+        beforeEach(function() {
+            browser.get('#/phones/nexus-s');
+        });
+
+
+        it('should display placeholder page with phoneId', function() {
+            expect(element(by.binding('phoneId')).getText()).to.eventually.contain('nexus-s');
+        });
+    });
+
+    function getCurrentUrlHash() {
         var deferred = Q.defer();
+        var urlPromise = this.getCurrentUrl();
 
         urlPromise.then(function(url) {
             var hash = url.substring(url.indexOf('#') + 1);
