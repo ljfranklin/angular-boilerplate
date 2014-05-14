@@ -1,4 +1,4 @@
-/*global require*/
+/*global define*/
 'use strict';
 
 define([
