@@ -2,15 +2,32 @@
 
 define([
     'chai',
+    'angular',
     'mocks',
     'app',
-    'controllers/controllers'
-], function (chai) {
+    'controllers/controllers',
+    'services/services'
+], function (chai, angular) {
+
+    chai.use(function(_chai, utils) {
+        _chai.Assertion.addMethod('resourceEqual', function(expected) {
+            var obj = utils.flag(this, 'object');
+
+            this.assert(
+                angular.equals(obj, expected),
+                'expected #{exp} but got #{act}',
+                'expected #{exp} to not be #{act}',
+                expected,      // expected
+                angular.toJson(obj)   // actual
+            );
+        });
+    });
     var expect = chai.expect;
 
     describe('Controllers', function() {
 
         beforeEach(module('phonecatApp'));
+        beforeEach(module('phonecatServices'));
 
         describe('PhoneListController', function () {
 
@@ -26,10 +43,10 @@ define([
             }));
 
             it('should create "phones" model with 2 phones fetched from xhr', function() {
-                expect(scope.phones).to.be.undefined;
+                expect(scope.phones).to.be.empty;
                 $httpBackend.flush();
 
-                expect(scope.phones).to.deep.equal([{name: 'Nexus S'},
+                expect(scope.phones).to.resourceEqual([{name: 'Nexus S'},
                     {name: 'Motorola DROID'}]);
             });
 
@@ -57,10 +74,10 @@ define([
             }));
 
             it('should fetch phone detail', function() {
-                expect(scope.phone).to.be.undefined;
+                expect(scope.phone).to.resourceEqual({});
                 $httpBackend.flush();
 
-                expect(scope.phone).to.deep.equal(xyzPhoneData());
+                expect(scope.phone).to.resourceEqual(xyzPhoneData());
             });
 
         });

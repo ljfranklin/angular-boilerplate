@@ -24,7 +24,8 @@ require.config({
         'angular': '../bower_components/angular/angular',
         'mocks': '../../test/bower_components/angular-mocks/angular-mocks',
         'app': 'app',
-        'chai': '../../test/bower_components/chai/chai'
+        'chai': '../../test/bower_components/chai/chai',
+        'chai-as-promised': '../../test/bower_components/chai-as-promised/lib/chai-as-promised'
     },
 
     shim: {
